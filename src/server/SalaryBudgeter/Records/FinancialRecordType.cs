@@ -7,8 +7,9 @@
     {
         Income,
         Expense,
-        Savings,
+        Saving,
+        Goal,
+        Percentage,
         Other,
-        Percentage
     }
 }

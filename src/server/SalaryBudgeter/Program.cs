@@ -27,9 +27,9 @@ namespace SalaryBudgeter
                 new("Other", "Weekly miscellaneous", 20m, FinancialRecordType.Expense),
 
                 // Savings
-                new ("Savings", "Money from my savings account.", 1001.38m, FinancialRecordType.Savings),
-                new ("Upcoming", "Money from upcoming salary.", 1111.20m, FinancialRecordType.Savings),
-                new ("Due Paid Leave", "Money from Mexico's due paid leave.", 949.15m, FinancialRecordType.Savings)
+                new ("Savings", "Money from my savings account.", 1001.38m, FinancialRecordType.Saving),
+                new ("Upcoming", "Money from upcoming salary.", 1111.20m, FinancialRecordType.Saving),
+                new ("Due Paid Leave", "Money from Mexico's due paid leave.", 949.15m, FinancialRecordType.Saving)
             ];
 
 
@@ -63,9 +63,9 @@ namespace SalaryBudgeter
 
             List<FinancialRecord> savings =
             [
-                new ("Savings", "Money from my savings account.", 1001.38m, FinancialRecordType.Savings),
-                new ("Upcoming", "Money from upcoming salary.", 1181m, FinancialRecordType.Savings),
-                new ("Due Paid Leave", "Money from Mexico's due paid leave.", 1000m, FinancialRecordType.Savings)
+                new ("Savings", "Money from my savings account.", 1001.38m, FinancialRecordType.Saving),
+                new ("Upcoming", "Money from upcoming salary.", 1181m, FinancialRecordType.Saving),
+                new ("Due Paid Leave", "Money from Mexico's due paid leave.", 1000m, FinancialRecordType.Saving)
             ];
 
             BudgetCalculator manager = new(incomes, expenses, savings, 19m, weeklyHourScheme[index], (7000m + (400m + 700m + 400m + 300m + 150m) + (400.24m + 96.10m + 167.50m + 75m)));

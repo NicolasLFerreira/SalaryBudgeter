@@ -67,14 +67,14 @@ namespace SalaryBudgeter.Budgeting
             return
             [
                 new ("Weeks", "Total weeks", weeks, FinancialRecordType.Other),
-                new ("Salary", "Total salary in the given time span.", salary),
+                new ("Salary", "Total salary in the given time span.", salary, FinancialRecordType.Income),
                 new ("Expenses", "Total expenses in the given time span.", totalExpenses, FinancialRecordType.Expense),
-                new ("Profit", "Left over from salary after expenses.", salary - totalExpenses),
+                new ("Profit", "Left over from salary after expenses.", salary - totalExpenses, FinancialRecordType.Income),
                 new ("Ratio", "Ratio between income and expenses.", percentage, FinancialRecordType.Percentage),
-                new ("Savings", "Amount that was already saved.", TotalSavings, FinancialRecordType.Savings),
-                new ("Final", "Total amount of money in the end.", profit + TotalSavings, FinancialRecordType.Savings),
-                new ("Goal", "Goal savings", Goal, FinancialRecordType.Savings),
-                new ("Until Goal", "Missing amount", Goal - (profit + TotalSavings), FinancialRecordType.Savings)
+                new ("Savings", "Amount that was already saved.", TotalSavings, FinancialRecordType.Saving),
+                new ("Final", "Total amount of money in the end.", profit + TotalSavings, FinancialRecordType.Saving),
+                new ("Goal", "Goal savings", Goal, FinancialRecordType.Saving),
+                new ("Until Goal", "Missing amount", Goal - (profit + TotalSavings), FinancialRecordType.Saving)
             ];
         }
     }
