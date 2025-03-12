@@ -9,7 +9,6 @@
         Expense,
         Saving,
         Goal,
-        Percentage,
         Other,
     }
 }

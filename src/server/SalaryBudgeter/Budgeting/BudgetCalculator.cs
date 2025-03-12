@@ -70,7 +70,7 @@ namespace SalaryBudgeter.Budgeting
                 new ("Salary", "Total salary in the given time span.", salary, FinancialRecordType.Income),
                 new ("Expenses", "Total expenses in the given time span.", totalExpenses, FinancialRecordType.Expense),
                 new ("Profit", "Left over from salary after expenses.", salary - totalExpenses, FinancialRecordType.Income),
-                new ("Ratio", "Ratio between income and expenses.", percentage, FinancialRecordType.Percentage),
+                new ("Ratio", "Ratio between income and expenses.", percentage, FinancialRecordType.Other),
                 new ("Savings", "Amount that was already saved.", TotalSavings, FinancialRecordType.Saving),
                 new ("Final", "Total amount of money in the end.", profit + TotalSavings, FinancialRecordType.Saving),
                 new ("Goal", "Goal savings", Goal, FinancialRecordType.Saving),

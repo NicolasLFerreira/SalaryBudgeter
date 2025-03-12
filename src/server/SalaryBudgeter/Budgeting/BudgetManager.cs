@@ -2,28 +2,10 @@
 
 namespace SalaryBudgeter.Budgeting
 {
-    internal class BudgetManager
+    internal class BudgetManager(IFinancialRecordManager financialRecordManager) : IBudgetManager
     {
-        private Dictionary<FinancialRecordType, List<FinancialRecord>> Records { get; }
+        private IFinancialRecordManager _financialRecordManager = financialRecordManager;
 
-        public BudgetManager(List<FinancialRecord> records)
-        {
-            Records = [];
-
-            foreach (var type in (FinancialRecordType[])Enum.GetValues(typeof(FinancialRecordType)))
-            {
-                Records[type] = [];
-            }
-
-            Distribute(records);
-        }
-
-        public void Distribute(List<FinancialRecord> records)
-        {
-            foreach (FinancialRecord record in records)
-            {
-                Records[record.RecordType].Add(record);
-            }
-        }
+        
     }
 }
