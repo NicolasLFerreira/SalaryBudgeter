@@ -14,13 +14,15 @@ namespace SalaryBudgeter.Budgeting
             {
                 Records[type] = [];
             }
+
+            Distribute(records);
         }
 
         public void Distribute(List<FinancialRecord> records)
         {
             foreach (FinancialRecord record in records)
             {
-
+                Records[record.RecordType].Add(record);
             }
         }
     }

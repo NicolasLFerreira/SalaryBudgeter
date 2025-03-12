@@ -1,10 +1,16 @@
 ﻿namespace SalaryBudgeter.Records
 {
+    /// <summary>
+    /// Abstracts access to a storage of financial records
+    /// </summary>
     internal interface IFinancialRecordManager
     {
-        List<FinancialRecord> this[FinancialRecordType recordType] { get; }
-
         void Add(FinancialRecord record);
-        List<FinancialRecord> Get(FinancialRecordType recordType);
+        void AddRange(IEnumerable<FinancialRecord> records);
+        IEnumerable<FinancialRecord> Get(string name);
+        IEnumerable<FinancialRecord> Get(FinancialRecordType recordType);
+        IEnumerable<FinancialRecord> Get(string name, FinancialRecordType recordType);
+        // void Remove(Guid id); // Will be implemented once id system has been put in place.
+        void Clear();
     }
 }
