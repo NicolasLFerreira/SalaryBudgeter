@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SalaryBudgeter.Budgeting
 {
-    public class BudgetCalculator
+    public class BudgetCalculator : IBudgetCalculator
     {
         public decimal TotalIncomes => Wages.Sum(wage => wage.Amount);
         public decimal TotalExpenses => Expenses.Sum(expense => expense.Amount);
