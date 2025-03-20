@@ -1,4 +1,4 @@
-﻿using SalaryBudgeter.Records;
+﻿using SalaryBudgeter.Entries;
 
 using System;
 using System.Collections.Generic;
@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace SalaryBudgeter.Budgeting
 {
-    public class BudgetCalculator(IFinancialRecordManager financialRecordManager, string weeklyHoursScheme, decimal tax) : IBudgetCalculator
+    public class BudgetCalculator(IEntryManager financialRecordManager, string weeklyHoursScheme, decimal tax) : IBudgetCalculator
     {
-        private readonly IFinancialRecordManager _financialManager = financialRecordManager;
+        private readonly IEntryManager _financialManager = financialRecordManager;
         private string WeeklyHoursScheme { get; } = weeklyHoursScheme;
         private decimal Tax { get; } = tax;
 
-        public List<FinancialRecord> Calculate()
+        public List<Entry> Calculate()
         {
             int weeks = 0;
             int hours = 0;
@@ -32,27 +32,27 @@ namespace SalaryBudgeter.Budgeting
                 weeks += amountWeeks;
             }
 
-            decimal salary = _financialManager.GetTotal(FinancialRecordType.Income) * hours * ((100 - Tax) / 100);
+            decimal salary = _financialManager.GetTotal(EntryType.Income) * hours * ((100 - Tax) / 100);
 
-            decimal totalExpenses = _financialManager.GetTotal(FinancialRecordType.Expense) * weeks;
+            decimal totalExpenses = _financialManager.GetTotal(EntryType.Expense) * weeks;
 
             decimal profit = salary - totalExpenses;
             decimal percentage = totalExpenses * 100 / salary;
 
-            decimal savings = _financialManager.GetTotal(FinancialRecordType.Saving);
-            decimal goal = _financialManager.GetTotal(FinancialRecordType.Goal);
+            decimal savings = _financialManager.GetTotal(EntryType.Saving);
+            decimal goal = _financialManager.GetTotal(EntryType.Goal);
 
             return
             [
-                new ("Weeks", "Total weeks", (decimal)weeks, FinancialRecordType.Other),
-                new ("Salary", "Total salary in the given time span.", salary, FinancialRecordType.Income),
-                new ("Expenses", "Total expenses in the given time span.", totalExpenses, FinancialRecordType.Expense),
-                new ("Profit", "Left over from salary after expenses.", salary - totalExpenses, FinancialRecordType.Income),
-                new ("Ratio", "Ratio between income and expenses.", percentage, FinancialRecordType.Other),
-                new ("Savings", "Amount that was already saved.", savings, FinancialRecordType.Saving),
-                new ("Final", "Total amount of money in the end.", profit + savings, FinancialRecordType.Saving),
-                new ("Goal", "Goal savings", goal, FinancialRecordType.Saving),
-                new ("Until Goal", "Missing amount", goal - (profit + savings), FinancialRecordType.Saving)
+                new ("Weeks", "Total weeks", (decimal)weeks, EntryType.Other),
+                new ("Salary", "Total salary in the given time span.", salary, EntryType.Income),
+                new ("Expenses", "Total expenses in the given time span.", totalExpenses, EntryType.Expense),
+                new ("Profit", "Left over from salary after expenses.", salary - totalExpenses, EntryType.Income),
+                new ("Ratio", "Ratio between income and expenses.", percentage, EntryType.Other),
+                new ("Savings", "Amount that was already saved.", savings, EntryType.Saving),
+                new ("Final", "Total amount of money in the end.", profit + savings, EntryType.Saving),
+                new ("Goal", "Goal savings", goal, EntryType.Saving),
+                new ("Until Goal", "Missing amount", goal - (profit + savings), EntryType.Saving)
             ];
         }
     }

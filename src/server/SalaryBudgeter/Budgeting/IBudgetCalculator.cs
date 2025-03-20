@@ -1,9 +1,9 @@
-﻿using SalaryBudgeter.Records;
+﻿using SalaryBudgeter.Entries;
 
 namespace SalaryBudgeter.Budgeting
 {
     public interface IBudgetCalculator
     {
-        List<FinancialRecord> Calculate();
+        List<Entry> Calculate();
     }
 }

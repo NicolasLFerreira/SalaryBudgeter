@@ -1,9 +1,9 @@
-﻿namespace SalaryBudgeter.Records
+﻿namespace SalaryBudgeter.Entries
 {
     /// <summary>
     /// Used to differentiate between records of different types
     /// </summary>
-    public enum FinancialRecordType
+    public enum EntryType
     {
         Income,
         Expense,

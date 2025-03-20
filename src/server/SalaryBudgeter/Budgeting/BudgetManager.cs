@@ -1,10 +1,10 @@
-﻿using SalaryBudgeter.Records;
+﻿using SalaryBudgeter.Entries;
 
 namespace SalaryBudgeter.Budgeting
 {
-    internal class BudgetManager(IFinancialRecordManager financialRecordManager) : IBudgetManager
+    internal class BudgetManager(IEntryManager financialRecordManager) : IBudgetManager
     {
-        private IFinancialRecordManager _financialRecordManager = financialRecordManager;
+        private IEntryManager _financialRecordManager = financialRecordManager;
 
         
     }
