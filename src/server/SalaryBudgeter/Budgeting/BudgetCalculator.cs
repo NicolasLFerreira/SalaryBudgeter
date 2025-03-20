@@ -4,43 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SalaryBudgeter.Budgeting
 {
-    public class BudgetCalculator : IBudgetCalculator
+    public class BudgetCalculator(IFinancialRecordManager financialRecordManager, string weeklyHoursScheme, decimal tax) : IBudgetCalculator
     {
-        public decimal TotalIncomes => Wages.Sum(wage => wage.Amount);
-        public decimal TotalExpenses => Expenses.Sum(expense => expense.Amount);
-        public decimal TotalSavings => Savings.Sum(saving => saving.Amount);
-
-        private List<FinancialRecord> Wages { get; }
-        private List<FinancialRecord> Expenses { get; }
-        private List<FinancialRecord> Savings { get; }
-        private string WeeklyHoursScheme { get; }
-        private decimal Tax { get; }
-        private decimal Goal { get; }
-
-        public BudgetCalculator(List<FinancialRecord> incomes, List<FinancialRecord> expenses, List<FinancialRecord> savings, decimal tax, string weeklyHoursScheme, decimal goal)
-        {
-            Wages = incomes;
-            Expenses = expenses;
-            Savings = savings;
-            WeeklyHoursScheme = weeklyHoursScheme;
-            Tax = tax;
-            Goal = goal;
-        }
-
-        public decimal CalculateExpenses()
-        {
-            return Wages.Sum(income => income.Amount);
-        }
-
-        public decimal CalculateIncomes()
-        {
-            return Wages.Sum(income => income.Amount);
-        }
+        private readonly IFinancialRecordManager _financialManager = financialRecordManager;
+        private string WeeklyHoursScheme { get; } = weeklyHoursScheme;
+        private decimal Tax { get; } = tax;
 
         public List<FinancialRecord> Calculate()
         {
@@ -58,23 +32,27 @@ namespace SalaryBudgeter.Budgeting
                 weeks += amountWeeks;
             }
 
-            decimal salary = Wages.Sum(income => income.Amount) * hours * ((100 - Tax) / 100);
-            decimal totalExpenses = Expenses.Sum(expense => expense.Amount) * weeks;
+            decimal salary = _financialManager.GetTotal(FinancialRecordType.Income) * hours * ((100 - Tax) / 100);
+
+            decimal totalExpenses = _financialManager.GetTotal(FinancialRecordType.Expense) * weeks;
 
             decimal profit = salary - totalExpenses;
             decimal percentage = totalExpenses * 100 / salary;
 
+            decimal savings = _financialManager.GetTotal(FinancialRecordType.Saving);
+            decimal goal = _financialManager.GetTotal(FinancialRecordType.Goal);
+
             return
             [
-                new ("Weeks", "Total weeks", weeks, FinancialRecordType.Other),
+                new ("Weeks", "Total weeks", (decimal)weeks, FinancialRecordType.Other),
                 new ("Salary", "Total salary in the given time span.", salary, FinancialRecordType.Income),
                 new ("Expenses", "Total expenses in the given time span.", totalExpenses, FinancialRecordType.Expense),
                 new ("Profit", "Left over from salary after expenses.", salary - totalExpenses, FinancialRecordType.Income),
                 new ("Ratio", "Ratio between income and expenses.", percentage, FinancialRecordType.Other),
-                new ("Savings", "Amount that was already saved.", TotalSavings, FinancialRecordType.Saving),
-                new ("Final", "Total amount of money in the end.", profit + TotalSavings, FinancialRecordType.Saving),
-                new ("Goal", "Goal savings", Goal, FinancialRecordType.Saving),
-                new ("Until Goal", "Missing amount", Goal - (profit + TotalSavings), FinancialRecordType.Saving)
+                new ("Savings", "Amount that was already saved.", savings, FinancialRecordType.Saving),
+                new ("Final", "Total amount of money in the end.", profit + savings, FinancialRecordType.Saving),
+                new ("Goal", "Goal savings", goal, FinancialRecordType.Saving),
+                new ("Until Goal", "Missing amount", goal - (profit + savings), FinancialRecordType.Saving)
             ];
         }
     }

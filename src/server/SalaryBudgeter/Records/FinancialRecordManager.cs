@@ -25,11 +25,6 @@ internal class FinancialRecordManager : IFinancialRecordManager
         }
     }
 
-    public IEnumerable<FinancialRecord> Get(FinancialRecordType recordType)
-    {
-        return _storage[recordType];
-    }
-
     public IEnumerable<FinancialRecord> Get(string name)
     {
         foreach (var list in _storage)
@@ -38,9 +33,19 @@ internal class FinancialRecordManager : IFinancialRecordManager
         }
     }
 
+    public IEnumerable<FinancialRecord> Get(FinancialRecordType recordType)
+    {
+        return _storage[recordType];
+    }
+
     public IEnumerable<FinancialRecord> Get(string name, FinancialRecordType recordType)
     {
         return _storage[recordType].Where(record => record.Name == name);
+    }
+
+    public decimal GetTotal(FinancialRecordType recordType)
+    {
+        return Get(recordType).Sum(record => record.Amount);
     }
 
     public void Clear()

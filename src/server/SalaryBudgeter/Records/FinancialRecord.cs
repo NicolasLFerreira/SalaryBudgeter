@@ -23,5 +23,8 @@
 
         public FinancialRecord(string name, string description, decimal amount, FinancialRecordType recordType)
             : this(name, description, [amount], recordType) { }
+
+        public FinancialRecord(string name, string description, float amount, FinancialRecordType recordType)
+            : this(name, description, [(decimal)amount], recordType) { }
     }
 }
