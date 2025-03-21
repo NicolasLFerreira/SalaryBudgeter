@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace SalaryBudgeter.Entries;
+﻿namespace SalaryBudgeter.Entries;
 
 internal class EntryManager : IEntryManager
 {

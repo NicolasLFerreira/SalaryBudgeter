@@ -20,9 +20,8 @@ namespace SalaryBudgeter
 
             string[] weeklyHourScheme =
             [
-                "20-2 28-5 40-2 28-7 40-5", // uni
-                "30-4 16-16 20-16",
-                "40-2 20-2"
+                "20-2 26-5 40-2 26-7 40-5", // uni
+                "30-4 16-16 20-16", // mexico
             ];
 
             int index = 0;
@@ -33,9 +32,9 @@ namespace SalaryBudgeter
                 
                 // Expenses
                 new("Rent", "Weekly rent", 150m, EntryType.Expense),
-                new("Gas", "Weekly transport", 70m, EntryType.Expense),
+                new("Gas Commute", "Commute to work", 56m, EntryType.Expense),
+                new("Gas Random", "Gas for other uses", 20m, EntryType.Expense),
                 new("Gym", "Weekly gym membership", 7.2m, EntryType.Expense),
-                new("Food", "Weekly food", 20m, EntryType.Expense),
                 new("Monster", "Weekly monster cost", 13m, EntryType.Expense),
                 new("Other", "Misc spendings", 20m, EntryType.Expense),
 
@@ -44,16 +43,16 @@ namespace SalaryBudgeter
                 new ("Due Paid Leave", "Money from Mexico's due paid leave.", 1000m, EntryType.Saving),
 
                 // Goals
-                new ("Z400", "Price of the motorcycle", 6999.99m, EntryType.Goal),
-                new ("Helmet", "Price of the helmet", 400m, EntryType.Goal),
-                new ("Jacket", "Price of the jacket", 700m, EntryType.Goal),
-                new ("Leggings", "Price of the leggings", 400m, EntryType.Goal),
-                new ("Boots", "Price of the boots", 300m, EntryType.Goal),
-                new ("Gloves", "Price of the gloves", 150m, EntryType.Goal),
-                new ("Learner", "Price of the learner license", 90.6m, EntryType.Goal),
-                new ("Restricted", "Price of the restricted license", 54.2m, EntryType.Goal),
-                new ("REGO", "Price of the REGO", 424.28m, EntryType.Goal),
-                new ("WOF", "Price of the WOF", 75m, EntryType.Goal),
+                new ("Z400", "Motorcycle", 6999.99m, EntryType.Goal),
+                new ("HJC i71 White", "Helmet", 430m, EntryType.Goal),
+                new ("Spidi 4Season Red/White/Black", "Jacket", 799m, EntryType.Goal),
+                new ("Undecided Leggings", "Leggings", 400m, EntryType.Goal),
+                new ("Alpinestars Radon Drystar", "Boots", 399m, EntryType.Goal),
+                new ("Alpinestars SP-2 v3", "Gloves", 239.9m, EntryType.Goal),
+                new ("Learner", "Learner License", 90.6m, EntryType.Goal),
+                new ("Restricted", "Restricted License", 54.2m, EntryType.Goal),
+                new ("REGO", "REGO", 424.28m, EntryType.Goal),
+                new ("WOF", "WOF", 75m, EntryType.Goal),
             ]);
 
             BudgetCalculator manager = new(finances, weeklyHourScheme[index], 19m);
