@@ -10,20 +10,23 @@ public class Entry
     public decimal[] Amounts { get; }
     public EntryType EntryType { get; }
 
-    public decimal Amount => Amounts.Sum();
-    public char Sign => EntryType == EntryType.Other ? '%' : '$';
+    public readonly char? Sign;
 
-    public Entry(string name, string description, decimal[] amounts, EntryType entryType)
+    public decimal Amount => Amounts.Sum();
+
+
+    public Entry(string name, string description, decimal[] amounts, EntryType entryType, char? sign = '$')
     {
         Name = name;
         Description = description;
         Amounts = amounts;
         EntryType = entryType;
+        Sign = sign;
     }
 
-    public Entry(string name, string description, decimal amount, EntryType entryType)
-        : this(name, description, [amount], entryType) { }
+    public Entry(string name, string description, decimal amount, EntryType entryType, char? sign = '$')
+        : this(name, description, [amount], entryType, sign) { }
 
-    public Entry(string name, string description, float amount, EntryType entryType)
-        : this(name, description, [(decimal)amount], entryType) { }
+    public Entry(string name, string description, float amount, EntryType entryType, char? sign = '$')
+        : this(name, description, [(decimal)amount], entryType, sign) { }
 }

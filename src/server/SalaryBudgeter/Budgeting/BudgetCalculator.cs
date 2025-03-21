@@ -35,16 +35,16 @@ public class BudgetCalculator(IEntryManager financialRecordManager, string weekl
         decimal goal = _financialManager.GetTotal(EntryType.Goal);
 
         return
-        [
-            new ("Weeks", "Total weeks", (decimal)weeks, EntryType.Other),
-            new ("Salary", "Total salary in the given time span.", salary, EntryType.Income),
-            new ("Expenses", "Total expenses in the given time span.", totalExpenses, EntryType.Expense),
-            new ("Profit", "Left over from salary after expenses.", salary - totalExpenses, EntryType.Income),
-            new ("Ratio", "Ratio between income and expenses.", percentage, EntryType.Other),
-            new ("Savings", "Amount that was already saved.", savings, EntryType.Saving),
-            new ("Final", "Total amount of money in the end.", profit + savings, EntryType.Saving),
-            new ("Goal", "Goal savings", goal, EntryType.Saving),
-            new ("Until Goal", "Difference to goal", -(goal - (profit + savings)), EntryType.Saving)
+        [ 
+            new ("Weeks", "Total weeks", (decimal)weeks, EntryType.Report, null),
+            new ("Savings", "Currently saved amount.", savings, EntryType.Saving),
+            new ("Salary", "Salary in time span.", salary, EntryType.Report),
+            new ("Expenses", "Expenses in time span.", totalExpenses, EntryType.Report),
+            new ("Goal", "Amount to be saved.", goal, EntryType.Saving),
+            new ("Profit", "Salary after expenses.", salary - totalExpenses, EntryType.Report),
+            new ("Final", "Profit with saved amount.", profit + savings, EntryType.Report),
+            new ("Delta", "Difference from goal.", -(goal - (profit + savings)), EntryType.Report),
+            new ("Ratio", "Expense % of salary.", percentage, EntryType.Report, '%'),
         ];
     }
 }

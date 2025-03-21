@@ -9,5 +9,6 @@ public enum EntryType
     Expense,
     Saving,
     Goal,
+    Report,
     Other,
 }

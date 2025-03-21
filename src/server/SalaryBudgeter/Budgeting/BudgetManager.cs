@@ -2,9 +2,8 @@
 
 namespace SalaryBudgeter.Budgeting;
 
-internal class BudgetManager(IEntryManager financialRecordManager) : IBudgetManager
+internal class BudgetManager(IEntryManager entryManager, IBudgetCalculator budgetCalculator) : IBudgetManager
 {
-    private IEntryManager _financialRecordManager = financialRecordManager;
-
-    
+    private IEntryManager _entryManager = entryManager;
+    private IBudgetCalculator _budgetCalculator = budgetCalculator;
 }
