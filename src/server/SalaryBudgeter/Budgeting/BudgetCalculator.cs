@@ -1,11 +1,12 @@
-﻿using SalaryBudgeter.Entries;
+﻿using SalaryBudgeter.Clocking;
+using SalaryBudgeter.Entries;
 
 namespace SalaryBudgeter.Budgeting;
 
-public class BudgetCalculator(IEntryManager financialRecordManager, string weeklyHoursScheme, decimal tax) : IBudgetCalculator
+internal class BudgetCalculator(IEntryManager financialRecordManager, IHourScheme hourScheme,  decimal tax) : IBudgetCalculator
 {
     private readonly IEntryManager _financialManager = financialRecordManager;
-    private string WeeklyHoursScheme { get; } = weeklyHoursScheme;
+    private readonly IHourScheme _hourScheme = hourScheme;
     private decimal Tax { get; } = tax;
 
     public List<Entry> Calculate()
@@ -13,16 +14,22 @@ public class BudgetCalculator(IEntryManager financialRecordManager, string weekl
         int weeks = 0;
         int hours = 0;
 
-        foreach (string scheme in WeeklyHoursScheme.Split(' '))
+        foreach (var item in _hourScheme.Get())
         {
-            string[] parts = scheme.Split("-");
-
-            int weeklyHours = int.Parse(parts[0]);
-            int amountWeeks = int.Parse(parts[1]);
-
-            hours += weeklyHours * amountWeeks;
-            weeks += amountWeeks;
+            weeks += item.Repeat;
+            hours += item.Hours * item.Repeat;
         }
+
+        //foreach (string scheme in WeeklyHoursScheme.Split(' '))
+        //{
+        //    string[] parts = scheme.Split("-");
+
+        //    int weeklyHours = int.Parse(parts[0]);
+        //    int amountWeeks = int.Parse(parts[1]);
+
+        //    hours += weeklyHours * amountWeeks;
+        //    weeks += amountWeeks;
+        //}
 
         decimal salary = _financialManager.GetTotal(EntryType.Income) * hours * ((100 - Tax) / 100);
 

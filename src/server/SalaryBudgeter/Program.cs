@@ -1,9 +1,6 @@
-﻿using Microsoft.VisualBasic;
-
-using SalaryBudgeter.Budgeting;
+﻿using SalaryBudgeter.Budgeting;
+using SalaryBudgeter.Clocking;
 using SalaryBudgeter.Entries;
-
-using System;
 
 namespace SalaryBudgeter
 {
@@ -18,13 +15,13 @@ namespace SalaryBudgeter
         {
             IEntryManager finances = new EntryManager();
 
-            string[] weeklyHourScheme =
-            [
-                "20-2 26-5 40-2 26-7 40-5", // uni
-                "30-4 16-16 20-16", // mexico
-            ];
+            IHourScheme hourScheme = new HourScheme([]);
 
-            int index = 0;
+            hourScheme.Add(26, 5);
+            hourScheme.Add(40, 2);
+            hourScheme.Add(26, 7);
+            hourScheme.Add(20, 1);
+            hourScheme.Add(40, 5);
 
             finances.AddRange([
                 // Incomes
@@ -43,7 +40,7 @@ namespace SalaryBudgeter
                 new ("Due Paid Leave", "Money from Mexico's due paid leave.", 1000m, EntryType.Saving),
 
                 // Goals
-                new ("Z400", "Motorcycle", 6999.99m, EntryType.Goal),
+                new ("Z400", "Motorcycle", 6500m, EntryType.Goal),
                 new ("HJC i71 White", "Helmet", 430m, EntryType.Goal),
                 new ("Spidi 4Season Red/White/Black", "Jacket", 799m, EntryType.Goal),
                 new ("Undecided Leggings", "Leggings", 400m, EntryType.Goal),
@@ -55,7 +52,7 @@ namespace SalaryBudgeter
                 new ("WOF", "WOF", 75m, EntryType.Goal),
             ]);
 
-            BudgetCalculator manager = new(finances, weeklyHourScheme[index], 19m);
+            BudgetCalculator manager = new(finances, hourScheme, 19m);
 
             var result = manager.Calculate();
 
