@@ -1,8 +1,8 @@
-﻿using SalaryBudgeter.Budgeting;
-using SalaryBudgeter.Clocking;
-using SalaryBudgeter.Entries;
+﻿using SalaryBudgeterConsole.Budgeting;
+using SalaryBudgeterConsole.Clocking;
+using SalaryBudgeterConsole.Entries;
 
-namespace SalaryBudgeter
+namespace SalaryBudgeterConsole
 {
     public class Program
     {

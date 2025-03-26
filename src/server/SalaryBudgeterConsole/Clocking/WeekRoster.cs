@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace SalaryBudgeter.Clocking;
+namespace SalaryBudgeterConsole.Clocking;
 
 public class WeekRoster
 {

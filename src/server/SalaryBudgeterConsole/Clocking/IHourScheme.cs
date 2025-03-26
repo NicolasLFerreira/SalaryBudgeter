@@ -1,4 +1,4 @@
-﻿namespace SalaryBudgeter.Clocking;
+﻿namespace SalaryBudgeterConsole.Clocking;
 
 public interface IHourScheme
 {

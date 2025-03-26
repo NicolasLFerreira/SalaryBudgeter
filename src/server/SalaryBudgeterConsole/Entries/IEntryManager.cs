@@ -1,4 +1,4 @@
-﻿namespace SalaryBudgeter.Entries;
+﻿namespace SalaryBudgeterConsole.Entries;
 
 /// <summary>
 /// Abstracts access to a storage of financial records

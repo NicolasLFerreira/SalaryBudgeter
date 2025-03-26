@@ -1,4 +1,4 @@
-﻿namespace SalaryBudgeter.Clocking;
+﻿namespace SalaryBudgeterConsole.Clocking;
 
 internal class HourScheme(List<WeekRoster> weeks) : IHourScheme
 {

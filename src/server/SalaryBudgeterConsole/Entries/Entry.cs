@@ -1,4 +1,4 @@
-﻿namespace SalaryBudgeter.Entries;
+﻿namespace SalaryBudgeterConsole.Entries;
 
 /// <summary>
 /// Base class for financial objects.

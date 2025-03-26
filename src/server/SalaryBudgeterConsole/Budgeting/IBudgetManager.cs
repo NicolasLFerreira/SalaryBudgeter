@@ -1,4 +1,4 @@
-﻿namespace SalaryBudgeter.Budgeting;
+﻿namespace SalaryBudgeterConsole.Budgeting;
 
 internal interface IBudgetManager
 {

@@ -1,4 +1,4 @@
-﻿namespace SalaryBudgeter.Entries;
+﻿namespace SalaryBudgeterConsole.Entries;
 
 internal class EntryManager : IEntryManager
 {

@@ -1,6 +1,6 @@
-﻿using SalaryBudgeter.Entries;
+﻿using SalaryBudgeterConsole.Entries;
 
-namespace SalaryBudgeter.Budgeting;
+namespace SalaryBudgeterConsole.Budgeting;
 
 internal class BudgetManager(IEntryManager entryManager, IBudgetCalculator budgetCalculator) : IBudgetManager
 {

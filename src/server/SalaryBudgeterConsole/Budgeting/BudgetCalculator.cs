@@ -1,7 +1,7 @@
-﻿using SalaryBudgeter.Clocking;
-using SalaryBudgeter.Entries;
+﻿using SalaryBudgeterConsole.Clocking;
+using SalaryBudgeterConsole.Entries;
 
-namespace SalaryBudgeter.Budgeting;
+namespace SalaryBudgeterConsole.Budgeting;
 
 internal class BudgetCalculator(IEntryManager financialRecordManager, IHourScheme hourScheme, decimal tax) : IBudgetCalculator
 {

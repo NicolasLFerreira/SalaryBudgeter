@@ -1,6 +1,6 @@
-﻿using SalaryBudgeter.Entries;
+﻿using SalaryBudgeterConsole.Entries;
 
-namespace SalaryBudgeter.Budgeting;
+namespace SalaryBudgeterConsole.Budgeting;
 
 public interface IBudgetCalculator
 {

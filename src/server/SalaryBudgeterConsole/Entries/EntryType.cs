@@ -1,4 +1,4 @@
-﻿namespace SalaryBudgeter.Entries;
+﻿namespace SalaryBudgeterConsole.Entries;
 
 /// <summary>
 /// Used to differentiate between records of different types
